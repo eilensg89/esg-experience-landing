@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ESG Experience™ · Arquitectura de Marca con IA</title>
+  <meta name="description" content="ESG Experience™ convierte tu idea, experiencia o negocio en una arquitectura de marca reconocible, coherente y lista para operar." />
+  <style>
+    :root{
+      --stone:#c8b49a;
+      --cream:#f8f4ec;
+      --cream-soft:#efe6d8;
+      --cream-deep:#e5d8c7;
+      --body:#3d2010;
+      --brown:#a0622a;
+      --brown-dark:#7b4f24;
+      --leather:#5c2e0e;
+      --leather-dark:#2a1207;
+      --gold-dark:#8b6914;
+      --gold:#c9a646;
+      --gold-light:#f5d78e;
+      --black:#0a0a0a;
+      --black-soft:#111111;
+      --shadow:rgba(61,32,16,.18);
+      --line:rgba(123,79,36,.24);
+      --card:rgba(248,244,236,.76);
+      --serif: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      --sans: "DM Sans", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--stone)}
+    body{
+      margin:0;
+      color:var(--body);
+      font-family:var(--sans);
+      background-color:var(--stone);
+      background-image:
+        radial-gradient(circle at 20% 0%, rgba(248,244,236,.42), rgba(248,244,236,0) 34%),
+        linear-gradient(180deg, rgba(248,244,236,.16), rgba(200,180,154,.04)),
+        url("assets/esg-stone-bg.webp");
+      background-size:cover;
+      background-position:center top;
+      background-attachment:fixed;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg, rgba(10,10,10,.06), transparent 16%, transparent 84%, rgba(10,10,10,.05)),
+        radial-gradient(circle at 72% 18%, rgba(245,215,142,.14), transparent 22%);
+      z-index:-1;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .shell{width:min(1180px, calc(100% - 36px)); margin:0 auto; position:relative}
+    .grain{position:fixed; inset:0; pointer-events:none; opacity:.045; mix-blend-mode:multiply; background-image:repeating-linear-gradient(90deg, rgba(92,46,14,.28) 0 1px, transparent 1px 3px); z-index:0}
+    .nav{
+      position:fixed; left:50%; top:18px; transform:translateX(-50%);
+      width:min(1040px, calc(100% - 28px));
+      display:flex; align-items:center; justify-content:space-between; gap:18px;
+      padding:10px 12px 10px 18px;
+      background:rgba(248,244,236,.72);
+      backdrop-filter: blur(18px);
+      border:1px solid rgba(123,79,36,.2);
+      border-radius:999px;
+      box-shadow:0 20px 55px rgba(61,32,16,.13);
+      z-index:50;
+    }
+    .nav img{width:72px; height:auto; display:block}
+    .nav-links{display:flex; gap:20px; align-items:center; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--brown-dark)}
+    .nav-links a{opacity:.86}.nav-links a:hover{opacity:1}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      min-height:46px; padding:14px 22px; border-radius:999px;
+      border:1px solid rgba(245,215,142,.38);
+      background:linear-gradient(160deg,#080808,#1b1a18 68%,#27160d);
+      color:var(--cream); font-weight:650; letter-spacing:.01em;
+      box-shadow:0 18px 40px rgba(10,10,10,.24), inset 0 1px 0 rgba(245,215,142,.2);
+      cursor:pointer; transition:transform .22s ease, box-shadow .22s ease, opacity .22s ease;
+    }
+    .btn:hover{transform:translateY(-2px); box-shadow:0 24px 52px rgba(10,10,10,.3), inset 0 1px 0 rgba(245,215,142,.26)}
+    .btn.secondary{
+      background:rgba(248,244,236,.5); color:var(--body); border:1px solid rgba(123,79,36,.34);
+      box-shadow:0 14px 30px rgba(61,32,16,.08), inset 0 1px 0 rgba(255,255,255,.32);
+    }
+    .btn.gold{background:linear-gradient(160deg,#2b1206,#6a3a15 48%,#0a0a0a); color:var(--cream)}
+    .hero{min-height:100svh; display:grid; align-items:center; padding:140px 0 76px; position:relative}
+    .hero-grid{display:grid; grid-template-columns:1.08fr .92fr; gap:58px; align-items:center}
+    .eyebrow{
+      font-size:11px; line-height:1; letter-spacing:.31em; text-transform:uppercase; color:var(--brown-dark);
+      font-weight:700; margin:0 0 24px; display:flex; align-items:center; gap:12px;
+    }
+    .eyebrow::after{content:""; width:34px; height:1px; background:linear-gradient(90deg,var(--brown-dark),var(--gold)); display:inline-block}
+    h1,h2,h3{font-family:var(--serif); font-weight:300; margin:0; color:var(--leather); letter-spacing:-.045em}
+    h1{font-size:clamp(64px, 9.1vw, 136px); line-height:.86; text-shadow:0 3px 0 rgba(92,46,14,.09),0 24px 48px rgba(92,46,14,.18)}
+    h2{font-size:clamp(46px, 6vw, 92px); line-height:.92; text-shadow:0 3px 0 rgba(92,46,14,.08),0 20px 38px rgba(92,46,14,.14)}
+    h3{font-size:clamp(30px, 3.1vw, 48px); line-height:1; letter-spacing:-.03em}
+    .gold-word{
+      font-style:italic;
+      background:linear-gradient(160deg,#1a0a02 0%,#8b6914 20%,#d4a017 35%,#f5d78e 44%,#fff8d7 50%,#f5d78e 56%,#d4a017 65%,#8b6914 80%,#1a0a02 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      filter:drop-shadow(0 8px 12px rgba(92,46,14,.12));
+    }
+    .lead{font-size:clamp(18px,2.1vw,24px); line-height:1.72; max-width:690px; margin:26px 0 0; color:#3a1d0e; letter-spacing:-.01em}
+    .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:36px}
+    .proof-line{margin-top:28px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; color:var(--brown-dark); font-size:13px; letter-spacing:.06em; text-transform:uppercase}
+    .proof-line span{padding:10px 14px; border:1px solid rgba(123,79,36,.22); border-radius:999px; background:rgba(248,244,236,.34)}
+    .visual-stage{position:relative; min-height:610px; display:grid; place-items:center; perspective:1200px}
+    .orb{
+      position:absolute; border-radius:999px; filter:blur(6px); opacity:.55; pointer-events:none;
+      background:radial-gradient(circle, rgba(245,215,142,.28), rgba(160,98,42,.02) 62%, transparent);
+    }
+    .orb.one{width:300px;height:300px;right:4%;top:1%;animation:float 9s ease-in-out infinite}.orb.two{width:220px;height:220px;left:2%;bottom:9%;animation:float 11s ease-in-out infinite reverse}
+    .phone-card{
+      width:min(440px, 92vw); min-height:560px; position:relative;
+      background:linear-gradient(180deg,rgba(248,244,236,.78),rgba(239,230,216,.58));
+      border:1px solid rgba(123,79,36,.22); border-radius:38px; padding:30px;
+      box-shadow:0 36px 90px rgba(61,32,16,.24), inset 0 1px 0 rgba(255,255,255,.34);
+      transform:rotateY(-8deg) rotateX(4deg);
+      overflow:hidden;
+    }
+    .phone-card::before{content:""; position:absolute; inset:16px; border:1px solid rgba(123,79,36,.18); border-radius:28px; pointer-events:none}
+    .phone-card::after{content:""; position:absolute; width:220px; height:220px; right:-80px; top:-70px; background:radial-gradient(circle,rgba(245,215,142,.28),transparent 70%); pointer-events:none}
+    .stage-logo{width:116px; display:block; margin:0 auto 28px; opacity:.96}
+    .stage-label{font-size:10px; letter-spacing:.28em; color:var(--brown-dark); text-align:center; text-transform:uppercase; font-weight:700}
+    .stage-title{font-family:var(--serif); font-size:clamp(42px,5vw,74px); line-height:.89; letter-spacing:-.05em; margin:26px 0 22px; text-align:center; color:var(--leather)}
+    .stage-copy{font-size:15px; line-height:1.75; text-align:center; color:var(--body); max-width:340px; margin:0 auto}
+    .mini-system{margin-top:32px; display:grid; gap:10px}
+    .mini-row{display:flex; justify-content:space-between; gap:20px; padding:14px 16px; border:1px solid rgba(123,79,36,.2); border-radius:18px; background:rgba(248,244,236,.46); font-size:13px}
+    .mini-row b{color:var(--leather)} .mini-row span{color:var(--brown-dark)}
+    .seal-float{position:absolute; right:-16px; bottom:90px; width:86px; filter:drop-shadow(0 20px 22px rgba(92,46,14,.24)); animation:float 7s ease-in-out infinite}
+    .floating-card{position:absolute; background:rgba(10,10,10,.88); color:var(--cream); border:1px solid rgba(245,215,142,.24); border-radius:22px; padding:18px 20px; max-width:230px; box-shadow:0 22px 50px rgba(10,10,10,.22); font-size:14px; line-height:1.55}
+    .floating-card strong{color:var(--gold-light)}
+    .floating-card.left{left:-8%; top:26%}.floating-card.right{right:-5%; bottom:12%}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    section{position:relative; z-index:1; padding:118px 0}
+    .section-head{max-width:840px; margin:0 auto 54px; text-align:center}
+    .section-head .eyebrow{justify-content:center}.section-head .eyebrow::before{content:""; width:34px; height:1px; background:linear-gradient(90deg,var(--gold),var(--brown-dark)); display:inline-block}.section-head .eyebrow::after{display:inline-block}
+    .section-head p{font-size:clamp(17px,1.8vw,22px); line-height:1.74; margin:24px auto 0; max-width:720px;color:var(--body)}
+    .split{display:grid; grid-template-columns:.9fr 1.1fr; gap:42px; align-items:stretch}
+    .panel{
+      background:var(--card); border:1px solid var(--line); border-radius:34px; padding:clamp(28px,4vw,48px); box-shadow:0 28px 80px var(--shadow), inset 0 1px 0 rgba(255,255,255,.32);
+      backdrop-filter:blur(8px); position:relative; overflow:hidden;
+    }
+    .panel.dark{background:linear-gradient(160deg,rgba(10,10,10,.95),rgba(32,24,18,.92)); color:var(--cream); border-color:rgba(245,215,142,.22)}
+    .panel.dark h3,.panel.dark h2{color:var(--cream)}.panel.dark p{color:rgba(248,244,236,.82)}
+    .panel p{font-size:17px; line-height:1.75; margin:18px 0 0}.panel .small{font-size:14px;color:var(--brown-dark)}
+    .diagnosis-list{display:grid; gap:14px; margin-top:26px}
+    .diagnosis-item{padding:18px 18px 18px 20px; border-left:2px solid var(--brown); background:rgba(248,244,236,.42); border-radius:0 18px 18px 0; font-size:16px; line-height:1.62}
+    .ribbon{position:absolute; inset:auto -80px 26px auto; transform:rotate(-7deg); font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:rgba(123,79,36,.32); font-weight:800; white-space:nowrap}
+    .system-rail{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:46px}
+    .pillar{min-height:210px; background:rgba(248,244,236,.62); border:1px solid rgba(123,79,36,.22); border-radius:28px; padding:26px 22px; box-shadow:0 20px 50px rgba(61,32,16,.1); position:relative; overflow:hidden}
+    .pillar .num{font-family:var(--serif); font-size:58px; line-height:.8; color:rgba(160,98,42,.28)}
+    .pillar h3{font-size:30px; margin-top:18px}.pillar p{font-size:14.5px; line-height:1.58; margin:14px 0 0}
+    .assistants{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:36px}
+    .assistant-card{padding:20px; border:1px solid rgba(123,79,36,.22); border-radius:22px; background:rgba(248,244,236,.55); transition:transform .25s ease, background .25s ease}
+    .assistant-card:hover{transform:translateY(-4px); background:rgba(248,244,236,.74)}
+    .assistant-card b{font-family:var(--serif); font-size:30px; font-weight:300; color:var(--leather); display:block; letter-spacing:-.02em}.assistant-card span{font-size:13.5px; line-height:1.55; display:block; margin-top:8px; color:var(--body)}
+    .pathways{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:34px}.path{display:flex; flex-direction:column; min-height:420px}.path .btn{margin-top:auto; align-self:flex-start}.price{font-family:var(--serif); font-size:56px; line-height:1; color:var(--leather); margin:22px 0 10px}.price small{font-family:var(--sans); font-size:14px; letter-spacing:.16em; text-transform:uppercase; color:var(--brown-dark)}
+    .clean-list{display:grid; gap:12px; margin:22px 0 28px}.clean-list div{display:grid; grid-template-columns:22px 1fr; gap:10px; align-items:start; font-size:15.5px; line-height:1.55}.clean-list div::before{content:"◆"; color:var(--brown); transform:translateY(1px); font-size:12px}.panel.dark .clean-list div::before{color:var(--gold-light)}
+    .objections{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:36px}.objection{padding:24px; background:rgba(248,244,236,.62); border:1px solid rgba(123,79,36,.2); border-radius:26px}.objection h3{font-size:32px}.objection p{font-size:15.5px; line-height:1.65; margin-top:10px}
+    .cta-final{padding:120px 0 140px}.final-card{position:relative; text-align:center; padding:clamp(44px,7vw,86px); border-radius:42px; background:rgba(248,244,236,.78); border:1px solid rgba(123,79,36,.22); box-shadow:0 40px 100px rgba(61,32,16,.22); overflow:hidden}.final-card::before{content:""; position:absolute; inset:22px; border:1px solid rgba(123,79,36,.16); border-radius:30px; pointer-events:none}.final-card img{width:64px; filter:drop-shadow(0 20px 26px rgba(92,46,14,.24)); margin-bottom:24px}.final-card p{font-size:clamp(18px,2vw,23px); line-height:1.72; max-width:760px; margin:26px auto 0}.final-actions{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:36px}
+    footer{padding:38px 0 62px; color:var(--brown-dark); font-size:12px; letter-spacing:.14em; text-transform:uppercase}.footer-inner{display:flex; justify-content:space-between; gap:20px; align-items:center; border-top:1px solid rgba(123,79,36,.22); padding-top:26px}.footer-inner img{width:34px; filter:drop-shadow(0 10px 16px rgba(92,46,14,.2))}
+    .reveal{opacity:0; transform:translateY(34px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1; transform:translateY(0)}
+    .split-lines span{display:inline-block; opacity:0; transform:translateY(1.2em); transition:opacity .7s ease, transform .75s cubic-bezier(.2,.7,.2,1)}.split-lines.in span{opacity:1; transform:translateY(0)}
+    .mobile-only{display:none}
+    @media (max-width:920px){
+      body{background-attachment:scroll}.nav{top:10px}.nav-links{display:none}.nav img{width:64px}.hero{padding:112px 0 54px}.hero-grid,.split,.pathways{grid-template-columns:1fr}.visual-stage{min-height:520px; margin-top:24px}.phone-card{transform:none; min-height:520px}.floating-card{display:none}.seal-float{right:10px; bottom:70px; width:66px}.system-rail{grid-template-columns:1fr 1fr}.assistants,.objections{grid-template-columns:1fr}.section{padding:84px 0}.panel{border-radius:28px}.mobile-only{display:block}.hero-actions .btn,.final-actions .btn{width:100%}.footer-inner{flex-direction:column; text-align:center}h1{font-size:clamp(62px,17vw,96px)}
+    }
+    @media (max-width:560px){.shell{width:min(100% - 28px, 1180px)}.system-rail{grid-template-columns:1fr}.phone-card{padding:22px;border-radius:30px}.stage-logo{width:96px}.mini-row{flex-direction:column;gap:4px}.panel{padding:26px 22px}.hero .lead,.section-head p{font-size:17px}.proof-line span{width:100%;text-align:center}.price{font-size:46px}.nav .btn{padding:12px 16px; min-height:40px; font-size:13px}.nav{padding:8px 10px 8px 14px}}
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="#top"><img src="assets/esg-logo.png" alt="ESG Experience"></a>
+    <div class="nav-links"><a href="#sistema">Sistema</a><a href="#caminos">Caminos</a><a href="#preguntas">Dudas</a></div>
+    <a class="btn" href="#caminos">Entrar a ESG</a>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">ESG Experience™</p>
+          <h1 class="split-lines">La IA puede generar todo. Menos tu <span class="gold-word">marca</span>.</h1>
+          <p class="lead reveal">ESG Experience™ toma tu idea, tu experiencia o tu negocio y lo organiza en una arquitectura de marca reconocible, coherente y lista para operar.</p>
+          <div class="hero-actions reveal">
+            <a class="btn" href="#caminos">Quiero construir mi marca</a>
+            <a class="btn secondary" href="#made">Quiero que ESG lo haga por mí</a>
+          </div>
+          <div class="proof-line reveal"><span>Identidad</span><span>Contenido</span><span>Visualización</span><span>Monetización</span></div>
+        </div>
+        <div class="visual-stage reveal" aria-hidden="true">
+          <div class="orb one"></div><div class="orb two"></div>
+          <div class="floating-card left"><strong>No es otra academia.</strong><br>Es una arquitectura para ordenar la marca que ya quieres construir.</div>
+          <div class="phone-card">
+            <img class="stage-logo" src="assets/esg-logo.png" alt="">
+            <div class="stage-label">Sistema operativo de marca</div>
+            <div class="stage-title">De idea suelta a presencia reconocible</div>
+            <p class="stage-copy">Una marca no se queda en la mente porque publique más. Se queda cuando cada pieza repite una dirección.</p>
+            <div class="mini-system">
+              <div class="mini-row"><b>MARTA</b><span>arquitectura</span></div>
+              <div class="mini-row"><b>ANA</b><span>dirección visual</span></div>
+              <div class="mini-row"><b>CORY</b><span>contenido</span></div>
+              <div class="mini-row"><b>EXPERIENCE</b><span>sistema digital</span></div>
+            </div>
+          </div>
+          <img class="seal-float" src="assets/esg-butterfly.png" alt="">
+          <div class="floating-card right">La pregunta no es si puedes crear con IA.<br><strong>La pregunta es si eso se reconoce como tuyo.</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="problema">
+      <div class="shell split">
+        <div class="panel dark reveal">
+          <p class="eyebrow">El problema real</p>
+          <h2>Haces mucho. Pero nada termina de sentirse tuyo.</h2>
+          <p>Publicas. Pruebas herramientas. Guardas ideas. Compras recursos. Y aun así, cuando miras todo junto, tu marca todavía no tiene una presencia clara.</p>
+        </div>
+        <div class="panel reveal">
+          <h3>La actividad no siempre construye memoria.</h3>
+          <div class="diagnosis-list">
+            <div class="diagnosis-item">Tus imágenes pueden ser bonitas y aun así parecer de cualquier marca.</div>
+            <div class="diagnosis-item">Tu contenido puede tener valor y aun así no dejar una dirección en la mente de nadie.</div>
+            <div class="diagnosis-item">Tu vida privada no tiene que convertirse en contenido para que tu marca se sienta humana.</div>
+          </div>
+          <div class="ribbon">marca reconocible · dirección visual · arquitectura</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sistema">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Qué es ESG</p>
+          <h2>No vienes a escoger entre mil ideas. Vienes a construir la tuya.</h2>
+          <p>ESG Experience™ no funciona como una biblioteca de PDFs ni como un curso para consumir. Funciona como un sistema guiado por asistentes especializados que organiza identidad, contenido, visuales y monetización en una sola dirección.</p>
+        </div>
+        <div class="system-rail">
+          <article class="pillar reveal"><div class="num">01</div><h3>Identidad estratégica</h3><p>Define qué representa tu marca, qué protege, qué comunica y por qué alguien debería recordarla.</p></article>
+          <article class="pillar reveal"><div class="num">02</div><h3>Dirección visual</h3><p>Convierte estética en reconocimiento. La imagen deja de cambiar cada vez que generas algo nuevo.</p></article>
+          <article class="pillar reveal"><div class="num">03</div><h3>Contenido con arquitectura</h3><p>Tu contenido deja de ser una lista de publicaciones y empieza a construir una idea repetible.</p></article>
+          <article class="pillar reveal"><div class="num">04</div><h3>Monetización progresiva</h3><p>No todo se vende igual. ESG ordena entradas, productos, rutas y servicios según el momento del cliente.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="asistentes">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Por dentro</p>
+          <h2>Asistentes que cumplen una función. No personajes decorativos.</h2>
+          <p>Cada asistente trabaja una parte de la construcción de marca. La idea no es llenar la cuenta de bots. La idea es que cada decisión tenga un lugar dentro del sistema.</p>
+        </div>
+        <div class="assistants">
+          <div class="assistant-card reveal"><b>MARTA</b><span>Ordena la arquitectura estratégica de la marca.</span></div>
+          <div class="assistant-card reveal"><b>ANA</b><span>Traduce la estrategia en dirección visual coherente.</span></div>
+          <div class="assistant-card reveal"><b>EXPERIENCE</b><span>Convierte la idea en páginas, flujos y sistemas funcionales.</span></div>
+          <div class="assistant-card reveal"><b>CORY</b><span>Transforma la dirección en contenido que conecta y posiciona.</span></div>
+          <div class="assistant-card reveal"><b>STORY</b><span>Convierte las ideas en conversación, historias y yapping.</span></div>
+          <div class="assistant-card reveal"><b>ROSELINE</b><span>Produce imágenes con identidad, no piezas genéricas.</span></div>
+          <div class="assistant-card reveal"><b>VICTORIA</b><span>Da movimiento cinematográfico a la presencia visual.</span></div>
+          <div class="assistant-card reveal"><b>KAISEN</b><span>Organiza la producción final para ejecutar sin dispersión.</span></div>
+          <div class="assistant-card reveal"><b>EXIA</b><span>Crea personajes de marca, movimiento y cuentas animadas con dirección.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="caminos">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Dos caminos</p>
+          <h2>Aprendes a construirlo. O lo construimos por ti.</h2>
+          <p>La decisión no se empuja. Se ordena. Si quieres aprender el sistema, entras por Founder. Si necesitas resultado y producción, entras por Made.</p>
+        </div>
+        <div class="pathways">
+          <article class="panel path reveal">
+            <p class="eyebrow">ESG Learn</p>
+            <h3>Founder Edition</h3>
+            <div class="price">$297 <small>USD</small></div>
+            <p>Para quien ya no quiere seguir navegando entre ideas sueltas y necesita construir su marca con dirección.</p>
+            <div class="clean-list">
+              <div>Sistema base de arquitectura de marca.</div>
+              <div>Asistentes especializados por función.</div>
+              <div>Identidad, contenido, visuales y monetización conectados.</div>
+              <div>Día de Implementación ESG 1:1 de hasta 12 horas.</div>
+            </div>
+            <a class="btn" href="[[LINK_FOUNDER]]">Entrar a Founder Edition</a>
+          </article>
+          <article class="panel dark path reveal" id="made">
+            <p class="eyebrow">ESG Made</p>
+            <h3>No quieres aprender el proceso. Quieres el resultado.</h3>
+            <p>ESG Made toma tus fotos, tu negocio, tu idea o tu proyecto y construye piezas visuales con dirección. No imágenes bonitas. Identidad coherente.</p>
+            <div class="clean-list">
+              <div>Dirección visual aplicada.</div>
+              <div>Piezas que se sienten de la misma marca.</div>
+              <div>Fotos reales + IA + criterio humano.</div>
+              <div>Paquetes visuales según el nivel del proyecto.</div>
+            </div>
+            <a class="btn gold" href="[[LINK_MADE]]">Ver paquetes Made</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="preguntas">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Antes de decidir</p>
+          <h2>Las dudas correctas no se ignoran. Se responden.</h2>
+        </div>
+        <div class="objections">
+          <div class="objection reveal"><h3>¿Y si no tengo claro qué vender?</h3><p>Entonces no empezamos por vender. Empezamos por ordenar qué sabes, qué puedes sostener y qué problema podrías resolver desde tu experiencia.</p></div>
+          <div class="objection reveal"><h3>¿Y si ya compré cursos?</h3><p>Eso no te descalifica. Muchas personas llegan con información. ESG existe para conectar lo que ya está suelto.</p></div>
+          <div class="objection reveal"><h3>¿Y si no quiero mostrar mi vida?</h3><p>No tienes que hacerlo. La conexión también puede nacer de tu criterio, tus límites, tu proceso y tu forma de explicar.</p></div>
+          <div class="objection reveal"><h3>¿Y si todavía no sé si es para mí?</h3><p>Empieza por la Brújula. Te ayuda a identificar si necesitas claridad, academia, Founder o Made sin comprar a ciegas.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final">
+      <div class="shell final-card reveal">
+        <img src="assets/esg-butterfly.png" alt="Mariposa Dorada ESG">
+        <p class="eyebrow">ESG Experience™</p>
+        <h2>No necesitas otra idea. Necesitas construir bien la que ya tienes.</h2>
+        <p>Si sientes que tienes experiencia, herramientas o contenido, pero todavía no una presencia reconocible, esta es la puerta para dejar de improvisar.</p>
+        <div class="final-actions">
+          <a class="btn" href="[[LINK_FOUNDER]]">Quiero Founder Edition</a>
+          <a class="btn secondary" href="[[LINK_BRUJULA_PRIVADA]]">Necesito la Brújula primero</a>
+          <a class="btn secondary" href="[[LINK_MADE]]">Quiero ESG Made</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <span>ESG Experience™ · La IA puede generar todo. Menos tu marca.</span>
+      <img src="assets/esg-butterfly.png" alt="">
+      <span>@eilensg</span>
+    </div>
+  </footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal, .split-lines');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      })
+    }, {threshold:.16});
+    revealEls.forEach(el => io.observe(el));
+
+    document.querySelectorAll('.split-lines').forEach(h => {
+      const childHTML = h.innerHTML;
+      const temp = document.createElement('div'); temp.innerHTML = childHTML;
+      const nodes = Array.from(temp.childNodes);
+      h.innerHTML=''; let delay=0;
+      nodes.forEach(node => {
+        if(node.nodeType === Node.TEXT_NODE){
+          node.textContent.split(/(\s+)/).forEach(part => {
+            if(!part) return;
+            if(part.trim()===''){ h.appendChild(document.createTextNode(part)); return; }
+            const span=document.createElement('span'); span.textContent=part; span.style.transitionDelay=(delay*38)+'ms'; delay++; h.appendChild(span); h.appendChild(document.createTextNode(' '));
+          });
+        } else {
+          const span=document.createElement('span'); span.innerHTML=node.outerHTML; span.style.transitionDelay=(delay*38)+'ms'; delay++; h.appendChild(span); h.appendChild(document.createTextNode(' '));
+        }
+      });
+    });
+
+    const parallaxItems = document.querySelectorAll('.seal-float, .floating-card.left, .floating-card.right');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY || 0;
+      parallaxItems.forEach((el, i) => {
+        const speed = (i + 1) * 0.025;
+        el.style.translate = `0 ${y * speed}px`;
+      });
+    }, {passive:true});
+  </script>
+</body>
+</html>
